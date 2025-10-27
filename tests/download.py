@@ -23,7 +23,7 @@ if __name__ == '__main__':
         ids += ids_dir.extract_game_ids_from_file(filename)
         continue
 
-    log_dir = GameLogDirectory(os.path.join(DIST, "logs", TARGET))
+    log_dir = GameLogDirectory(os.path.join(DIST, "game_logs", TARGET))
 
     for id_ in ids:
         log_dir.download_and_install(id_, sleep_time=0.1)
