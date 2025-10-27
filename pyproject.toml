@@ -5,7 +5,7 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = 'MRA'
-version = '0.0.6'
+version = '0.0.7'
 description = 'Data-driven analysis of discard risk in Mahjong using machine learning with Tenhou game logs.'
 
 readme = 'README.md'
@@ -13,7 +13,7 @@ license = {file='LICENSE'}
 
 requires-python = '>=3.12'
 dependencies = [
-    "TenhouAPI@git+https://github.com/AtoKashinoki/TenhouAPI.git"
+    "TenhouAPI@git+https://github.com/AtoKashinoki/TenhouAPI.git@S1"
 ]
 
 authors = [
