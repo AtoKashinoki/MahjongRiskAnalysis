@@ -1,6 +1,6 @@
 
 
-import os
+import os.path
 from TenhouAPI.game_id import GameIdDirectory
 from TenhouAPI.game_log import GameLogDirectory
 
@@ -14,8 +14,12 @@ if __name__ == '__main__':
 
     ids_dir = GameIdDirectory(os.path.join(DIST, "game_ids", TARGET))
 
+    filelist = ids_dir.save_file_from_zipped_files_dir(
+        os.path.join(DIST, "gz", TARGET),
+    )
+
     ids = []
-    for filename in ids_dir.listdir():
+    for filename in filelist:
         ids += ids_dir.extract_game_ids_from_file(filename)
         continue
 
