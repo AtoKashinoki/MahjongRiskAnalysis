@@ -7,7 +7,7 @@ from TenhouAPI.game_log import GameLogDirectory
 
 TARGET = "2024"
 
-DIST = os.path.join("..", "Tenhou")
+DIST = os.path.join("..", "tenhou_data")
 
 
 if __name__ == '__main__':
