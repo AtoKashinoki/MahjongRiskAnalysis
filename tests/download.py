@@ -25,8 +25,12 @@ if __name__ == '__main__':
 
     log_dir = GameLogDirectory(os.path.join(DIST, "game_logs", TARGET))
 
+    ids_len = len(ids)
+
     for id_ in ids:
         log_dir.download_and_install(id_, sleep_time=0.1)
+        progress = id_+1
+        print(f"Progress: {progress*100/ids_len:.2f}%[{progress}/{ids_len}]")
         continue
 
     ...
