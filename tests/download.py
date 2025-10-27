@@ -1,29 +1,28 @@
 
 
 import os
-from TenhouAPI.util import download
+from TenhouAPI.game_id import GameIdDirectory
+from TenhouAPI.game_log import GameLogDirectory
 
 
 TARGET = "2024"
 
-
 DIST = os.path.join("..", "Tenhou")
-ID_DIST = os.path.join(DIST, "game_ids")
-LOG_DIST = os.path.join(DIST, "game_logs")
-GZ_FILES = os.path.join(DIST, "gz", TARGET)
+
 
 if __name__ == '__main__':
 
-    game_id_dist = download.GameID(ID_DIST)
+    ids_dir = GameIdDirectory(os.path.join(DIST, "game_ids", TARGET))
 
-    all_ids = game_id_dist.extract_game_ids_from_directory(GZ_FILES)
+    ids = []
+    for filename in ids_dir.listdir():
+        ids += ids_dir.extract_game_ids_from_file(filename)
+        continue
 
-    game_log_dist = download.GameLog(LOG_DIST)
+    log_dir = GameLogDirectory(os.path.join(DIST, "logs", TARGET))
 
-    for ids in all_ids.values():
-        for id_ in ids:
-            game_log_dist.run_all_processes(id_, 0.1)
-            continue
+    for id_ in ids:
+        log_dir.download_and_install(id_, sleep_time=0.1)
         continue
 
     ...
