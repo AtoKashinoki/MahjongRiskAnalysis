@@ -27,9 +27,9 @@ if __name__ == '__main__':
 
     ids_len = len(ids)
 
-    for id_ in ids:
+    for idx, id_ in enumerate(ids):
         log_dir.download_and_install(id_, sleep_time=0.1)
-        progress = id_+1
+        progress = idx+1
         print(f"Progress: {progress*100/ids_len:.2f}%[{progress}/{ids_len}]")
         continue
 

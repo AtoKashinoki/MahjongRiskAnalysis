@@ -5,7 +5,7 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = 'MRA'
-version = '0.0.5'
+version = '0.0.6'
 description = 'Data-driven analysis of discard risk in Mahjong using machine learning with Tenhou game logs.'
 
 readme = 'README.md'
