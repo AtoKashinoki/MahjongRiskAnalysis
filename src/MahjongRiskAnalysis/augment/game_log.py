@@ -181,7 +181,7 @@ class MahjongLogAugmenter(Augmenter):
 
         # hand
         self.__hands = [
-            set(map(int, attrs[f"hai{idx}"].split(",")))
+            set([int(id_txt) for id_txt in attrs[f"hai{idx}"].split(",") if not id_txt == ""])
             for idx in range(self.__augmenter_config.player_num)
         ]
         self.__calls = [[] for _ in range(self.__augmenter_config.player_num)]
