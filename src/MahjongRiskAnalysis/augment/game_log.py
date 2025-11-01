@@ -334,10 +334,11 @@ class MahjongLogAugmenter(Augmenter):
         """
 
         # get pre discard tag
-        pre_discard_tag = self.__game_log[self.__log_index - 1]
-        if not pre_discard_tag in LogTag.DISCARDS:
-            pre_discard_tag = self.__game_log[self.__log_index - 2]
-            ...
+        pre_discard_tag = None
+        for i in range(1, 4):
+            if pre_discard_tag in LogTag.DISCARDS: break
+            pre_discard_tag = self.__game_log[self.__log_index - i]
+            continue
 
         # add called tile in hand
         self.__hands[call_player_id].add(

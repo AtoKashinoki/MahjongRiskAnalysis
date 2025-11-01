@@ -124,7 +124,6 @@ class AugmenterConfig(ConfigBase):
                 tuple(map(lambda x: x//4, augmenter.hands[self_player_id]))
             )
             exit()
-            ...
 
         training_data[0] += disclosed_tile_nums
 
