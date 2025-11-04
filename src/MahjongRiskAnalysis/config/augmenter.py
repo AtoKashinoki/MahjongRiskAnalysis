@@ -6,7 +6,7 @@ from selectors import SelectSelector
 
 
 from typing import (
-    List, Union, Tuple
+    List, Tuple, Optional
 )
 
 
@@ -90,11 +90,17 @@ class AugmenterConfig(ConfigBase):
             self_player_id: int,
             reach_player_id: int,
             augmenter: MahjongLogAugmenter,
-    ) -> str:
-        """"""
+    ) -> Tuple[int, ...]:
+        """
+        Generate training data.
+        :param self_player_id:
+        :param reach_player_id:
+        :param augmenter:
+        :return:
+        """
         """ init training data """
 
-        training_data: List[Union[List[int], int]] = [[], 0]
+        training_data: List[int] = []
 
         """ Explanatory variables """
 
@@ -125,14 +131,14 @@ class AugmenterConfig(ConfigBase):
             )
             exit()
 
-        training_data[0] += disclosed_tile_nums
+        training_data += disclosed_tile_nums
 
         # discard of reach player
         discard_nums = [0 for _ in range(cls.tile_kind_num)]
         for tile_id in augmenter.discard_tiles[reach_player_id]:
             discard_nums[tile_id//4] += 1
             continue
-        training_data[0] += discard_nums
+        training_data += discard_nums
 
         # tile that discard self
         discard_tile = augmenter.discard_tiles[self_player_id][-1]
@@ -140,35 +146,39 @@ class AugmenterConfig(ConfigBase):
             0 if not id_ == discard_tile else 1
             for id_ in range(cls.tile_num)
         ]
-        training_data[0] += discard_tile_vec
+        training_data += discard_tile_vec
 
         # discard tile is dora
-        training_data[0] += [
+        training_data += [
             1 if cls.is_dora(discard_tile, augmenter.display_doras) else 0
         ]
 
         # discard tile is suji
-        training_data[0] += [
+        training_data += [
             1 if cls.is_suji(discard_tile, augmenter.discard_tiles[reach_player_id]) else 0
         ]
 
         """ Response variable """
 
         next_tag: TagParser = augmenter.game_log[augmenter.log_index + 1]
-        if next_tag == LogTag.AGARI and int(next_tag.attrs["who"]) == reach_player_id:
-            training_data[1] = 1
-            ...
+        training_data += [
+            1
+            if (
+                    next_tag == LogTag.AGARI and
+                    int(next_tag.attrs["who"]) == reach_player_id
+            ) else
+            0
+        ]
 
         """ Return training data """
-
-        return str(training_data) + "\n"
+        return tuple(training_data)
 
     @classmethod
     def generate_training_datas(
             cls,
             self_player_id: int,
             augmenter: MahjongLogAugmenter,
-    ) -> str:
+    ) -> Optional[Tuple[Tuple[int, ...], ...]]:
         """
         Generate training data ini augmenter.
         :param self_player_id: id of discard player
@@ -178,20 +188,25 @@ class AugmenterConfig(ConfigBase):
 
         """ generate training data """
 
-        result = ""
+        result: List[Tuple[int, ...]] = []
         for player_id, reach in enumerate(augmenter.reach):
 
             if not reach: continue
             if player_id == self_player_id: continue
 
-            result += cls.generate_training_data(
+            datas = cls.generate_training_data(
                 self_player_id=self_player_id,
                 reach_player_id=player_id,
                 augmenter=augmenter,
             )
+            result.append(datas)
+            continue
 
             continue
 
-        return result
+        if len(result) == 0:
+            return None
+
+        return tuple(result)
 
     ...

@@ -1,7 +1,7 @@
 """
 Tools that augment game log of tenhou.
 """
-import os
+
 # typing
 
 
@@ -13,9 +13,13 @@ from typing import (
 # libs
 
 
+import os
+
 from TenhouAPI.game_log.parse import GameLogParser, TagParser, parse_m_attribute
 from TenhouAPI.config.game_log_tag import DisplayGameLogTag as LogTag
 from TenhouAPI.config.game_log_tag import DisplayCalls as Calls
+
+from numpy import array, save, int8
 
 from .mahjong_log_augmenter_skeleton import MahjongLogAugmenter as Augmenter
 from ..config.augmenter import AugmenterConfig
@@ -220,11 +224,11 @@ class MahjongLogAugmenter(Augmenter):
     def __discard_tag(
             self,
             discard_tag: TagParser,
-    ) -> str:
+    ) -> Tuple[int, ...]:
         """
         Processes of discard tag.
         :param discard_tag:
-        :return: String of training data.
+        :return: Tuple of training data.
         """
 
         # search player id
@@ -242,6 +246,7 @@ class MahjongLogAugmenter(Augmenter):
         self.__disclosed_tile_nums[target_id//4] += 1
 
         return self.__augmenter_config.__class__.generate_training_datas(player_id, self)
+
 
     def __reach_tag(
             self,
@@ -427,10 +432,10 @@ class MahjongLogAugmenter(Augmenter):
         ]
     ))
 
-    def __proceed_game_process(self) -> Optional[str]:
+    def __proceed_game_process(self) -> Optional[Tuple[int, ...]]:
         """
         Proceed game from game log.
-        :return: String of training data or TagParser.
+        :return: Tuple of training data or TagParser.
         """
 
         """ Proceed tag index """
@@ -451,22 +456,24 @@ class MahjongLogAugmenter(Augmenter):
 
         return None
 
-    def proceed_game(self) -> str:
+    def proceed_game(self) -> Tuple:
         """
         Proceed game from game log.
-        :return: String of training data.
+        :return: Ndarray of training data.
         """
         result = self.__proceed_game_process()
 
-        if not isinstance(result, str):
+        if result == self.__augmenter_config.OUT_OF_LOG_RANGE: return result
+
+        if not isinstance(result, tuple):
             return self.proceed_game()
 
         return result
 
-    def __next__(self):
+    def __next__(self) -> Tuple:
         """
         Proceed game from game log.
-        :return: String of training data.
+        :return: Ndarray of training data.
         """
         return self.proceed_game()
 
@@ -511,9 +518,15 @@ def augment_and_save_game_log(
 
     augmenter = augmenter(parsed_file)
 
-    training_data_string = ""
+    training_data: List[Tuple[int, ...]] = []
     for _ in range(len(augmenter)):
-        training_data_string += next(augmenter)
+        result = [
+            data
+            for data in next(augmenter)
+            if isinstance(data, Tuple)
+        ]
+        if len(result) == 0: continue
+        training_data += result
         continue
 
     """ save training data """
@@ -525,8 +538,7 @@ def augment_and_save_game_log(
         ...
 
     # save
-    with open(save_file_path, "w") as f:
-        f.write(training_data_string)
-        ...
+    training_data_array = array(training_data, dtype=int8)
+    save(save_file_path, training_data_array)
 
     return save_file_path

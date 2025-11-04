@@ -16,6 +16,8 @@ from typing import (
 
 from abc import ABC, abstractmethod
 
+from numpy import ndarray
+
 from TenhouAPI.util.config import ConfigBase
 from TenhouAPI.game_log.parse import GameLogParser, TagParser
 
@@ -178,11 +180,11 @@ class MahjongLogAugmenter(ABC):
     def __discard_tag(
             self,
             discard_tag: TagParser,
-    ) -> str:
+    ) -> ndarray:
         """
         Processes of discard tag.
         :param discard_tag:
-        :return: String of training data.
+        :return: Ndarray of training data.
         """
         ...
 
@@ -272,18 +274,18 @@ class MahjongLogAugmenter(ABC):
     __PROCEED_METHODS: Dict[str, Callable[[TagParser], Optional[str]]]
 
     @abstractmethod
-    def __proceed_game_process(self) -> Optional[str]:
+    def __proceed_game_process(self) -> Optional[ndarray]:
         """
         Proceed game from game log.
-        :return: String of training data or TagParser.
+        :return: Ndarray of training data or TagParser.
         """
         ...
 
     @abstractmethod
-    def proceed_game(self) -> str:
+    def proceed_game(self) -> ndarray:
         """
         Proceed game from game log.
-        :return: String of training data.
+        :return: Ndarray of training data.
         """
         ...
 
