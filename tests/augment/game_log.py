@@ -40,11 +40,11 @@ if __name__ == '__main__':
                 target_training_datas,
                 filename.replace("log", "training_data")
             )
-            if os.path.exists(save_file_path):
+            target = os.path.join(target_game_logs, filename)
+            result = augment_and_save_game_log(target, save_file_path)
+            if result is None:
                 print(f"File {save_file_path} already exists, skipping.")
                 continue
-            target = os.path.join(target_game_logs, filename)
-            augment_and_save_game_log(target, save_file_path)
             print("Augmented log saved to " + save_file_path)
             progress_num = idx+1
             print(f"Progress: {progress_num*100/listdir_length:.2f}%[{progress_num}/{listdir_length}]")

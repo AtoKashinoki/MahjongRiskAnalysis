@@ -432,7 +432,7 @@ class MahjongLogAugmenter(Augmenter):
         ]
     ))
 
-    def __proceed_game_process(self) -> Optional[Tuple[int, ...]]:
+    def __proceed_game_process(self) -> Optional[Union[Tuple[int, ...], str]]:
         """
         Proceed game from game log.
         :return: Tuple of training data or TagParser.
@@ -461,12 +461,20 @@ class MahjongLogAugmenter(Augmenter):
         Proceed game from game log.
         :return: Ndarray of training data.
         """
-        result = self.__proceed_game_process()
 
-        if result == self.__augmenter_config.OUT_OF_LOG_RANGE: return result
+        result = None
+        done = False
+        while not done:
 
-        if not isinstance(result, tuple):
-            return self.proceed_game()
+            result = self.__proceed_game_process()
+
+            if result == self.__augmenter_config.OUT_OF_LOG_RANGE: return result
+
+            if isinstance(result, tuple):
+                done = True
+                ...
+
+            ...
 
         return result
 
@@ -500,15 +508,22 @@ def augment_and_save_game_log(
         save_file_path: str,
         parser: type[GameLogParser] = GameLogParser,
         augmenter: type[MahjongLogAugmenter] = MahjongLogAugmenter,
-) -> str:
+        overwrite: bool = False,
+) -> Optional[str]:
     """
     Augment game log and save it to file.
     :param game_log_file_path: Game log file path.
     :param save_file_path: Save file path.
     :param parser: File of game log parser.
     :param augmenter: Augmenter class.
+    :param overwrite: If True, overwrite existing file.
     :return: Save file path.
     """
+
+    """ check """
+
+    if not overwrite and os.path.exists(save_file_path+".npy"):
+        return None
 
     """ Parse file """
 

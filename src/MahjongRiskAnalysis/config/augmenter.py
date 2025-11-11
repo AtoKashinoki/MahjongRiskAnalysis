@@ -1,7 +1,7 @@
 """
 Configs that augment game log.
 """
-from selectors import SelectSelector
+
 # typing
 
 
@@ -200,8 +200,6 @@ class AugmenterConfig(ConfigBase):
                 augmenter=augmenter,
             )
             result.append(datas)
-            continue
-
             continue
 
         if len(result) == 0:
