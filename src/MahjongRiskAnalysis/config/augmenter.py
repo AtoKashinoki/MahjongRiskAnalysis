@@ -143,9 +143,10 @@ class AugmenterConfig(ConfigBase):
         # tile that discard self
         discard_tile = augmenter.discard_tiles[self_player_id][-1]
         discard_tile_vec = [
-            0 if not id_ == discard_tile else 1
-            for id_ in range(cls.tile_num)
+            0 if not id_ == discard_tile//4 else 1
+            for id_ in range(cls.tile_kind_num)
         ]
+        if sum(discard_tile_vec) == 0: exit()
         training_data += discard_tile_vec
 
         # discard tile is dora
