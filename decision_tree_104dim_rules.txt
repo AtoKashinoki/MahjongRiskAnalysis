@@ -1,0 +1,901 @@
+|--- is_suji <= 0.500
+|   |--- discard_nan <= 0.500
+|   |   |--- discard_haku <= 0.500
+|   |   |   |--- discard_chun <= 0.500
+|   |   |   |   |--- discard_hatsu <= 0.500
+|   |   |   |   |   |--- discard_sha <= 0.500
+|   |   |   |   |   |   |--- discard_pei <= 0.500
+|   |   |   |   |   |   |   |--- discard_ton <= 0.500
+|   |   |   |   |   |   |   |   |--- discard_s1 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- discard_p9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- discard_p1 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- discard_p1 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |--- discard_p9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- discard_s1 >  0.500
+|   |   |   |   |   |   |   |   |   |--- visible_s1 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 >  2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_s1 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s1 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s1 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- discard_ton >  0.500
+|   |   |   |   |   |   |   |   |--- visible_ton <= 1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p8 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_nan <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_nan >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p8 >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_ton >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_ton <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p7 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |   |   |   |   |   |   |   |--- visible_p7 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 9
+|   |   |   |   |   |   |   |   |   |--- visible_ton >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- discard_pei >  0.500
+|   |   |   |   |   |   |   |--- visible_pei <= 1.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_p5 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- visible_m9 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m3 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 9
+|   |   |   |   |   |   |   |   |   |   |--- visible_m3 >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- visible_m9 >  3.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_sha <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |   |--- visible_sha >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |--- riichi_discard_p5 >  1.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_pei >  1.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_s4 <= 2.500
+|   |   |   |   |   |   |   |   |   |--- visible_pei <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p9 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- visible_p9 >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 5
+|   |   |   |   |   |   |   |   |   |--- visible_pei >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s6 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s6 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |--- riichi_discard_s4 >  2.500
+|   |   |   |   |   |   |   |   |   |--- visible_chun <= 3.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_chun >  3.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- discard_sha >  0.500
+|   |   |   |   |   |   |--- visible_sha <= 1.500
+|   |   |   |   |   |   |   |--- riichi_discard_p7 <= 1.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_s2 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m4 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s5 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 7
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s5 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m4 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p5 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_p5 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- riichi_discard_s2 >  0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s8 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p4 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 5
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p4 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s8 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- riichi_discard_p7 >  1.500
+|   |   |   |   |   |   |   |   |--- visible_chun <= 1.000
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_chun >  1.000
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_sha >  1.500
+|   |   |   |   |   |   |   |--- visible_sha <= 2.500
+|   |   |   |   |   |   |   |   |--- visible_m6 <= 3.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m5 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s3 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- visible_s3 >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m5 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p5 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_p5 >  2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_m6 >  3.500
+|   |   |   |   |   |   |   |   |   |--- visible_s8 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_s8 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p6 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p6 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_sha >  2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_m5 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- visible_chun <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m7 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_m7 >  2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |--- visible_chun >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_m5 >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_ton <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m2 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_m2 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_ton >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- discard_hatsu >  0.500
+|   |   |   |   |   |--- visible_hatsu <= 1.500
+|   |   |   |   |   |   |--- riichi_discard_p1 <= 1.500
+|   |   |   |   |   |   |   |--- visible_m6 <= 3.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_m7 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- visible_m7 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m6 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 9
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m6 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |   |   |   |   |   |   |--- visible_m7 >  3.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s4 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s4 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- riichi_discard_m7 >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_s7 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_s7 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- visible_m6 >  3.500
+|   |   |   |   |   |   |   |   |--- visible_s6 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_s6 >  1.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- riichi_discard_p1 >  1.500
+|   |   |   |   |   |   |   |--- riichi_discard_p9 <= 1.500
+|   |   |   |   |   |   |   |   |--- visible_p5 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_p5 >  0.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_p9 >  1.500
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- visible_hatsu >  1.500
+|   |   |   |   |   |   |--- visible_hatsu <= 2.500
+|   |   |   |   |   |   |   |--- riichi_discard_s8 <= 2.500
+|   |   |   |   |   |   |   |   |--- visible_m3 <= 3.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s4 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s6 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 8
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s6 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s4 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_chun <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_chun >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_m3 >  3.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_nan <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |   |--- visible_s9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_nan >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_s8 >  2.500
+|   |   |   |   |   |   |   |   |--- visible_s2 <= 2.000
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_s2 >  2.000
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_hatsu >  2.500
+|   |   |   |   |   |   |   |--- visible_s3 <= 3.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_haku <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_haku >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_chun <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_pei <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_pei >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_chun >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- visible_s3 >  3.500
+|   |   |   |   |   |   |   |   |--- visible_p4 <= 3.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s6 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s6 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_p4 >  3.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p5 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p5 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |--- discard_chun >  0.500
+|   |   |   |   |--- visible_chun <= 1.500
+|   |   |   |   |   |--- riichi_discard_s9 <= 2.500
+|   |   |   |   |   |   |--- riichi_discard_s5 <= 2.500
+|   |   |   |   |   |   |   |--- visible_s1 <= 3.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_s7 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m6 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m6 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 8
+|   |   |   |   |   |   |   |   |   |   |--- visible_m6 >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m6 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_sha <= 2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_sha >  2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- riichi_discard_s7 >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_s4 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_s4 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_s1 >  3.500
+|   |   |   |   |   |   |   |   |--- visible_sha <= 0.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_sha >  0.500
+|   |   |   |   |   |   |   |   |   |--- visible_p5 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m3 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m3 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_p5 >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- riichi_discard_s5 >  2.500
+|   |   |   |   |   |   |   |--- riichi_discard_p9 <= 1.500
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- riichi_discard_p9 >  1.500
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- riichi_discard_s9 >  2.500
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- visible_chun >  1.500
+|   |   |   |   |   |--- visible_chun <= 2.500
+|   |   |   |   |   |   |--- riichi_discard_p4 <= 1.500
+|   |   |   |   |   |   |   |--- riichi_discard_s2 <= 1.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_m6 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- visible_p9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m7 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 7
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m7 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- visible_p9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s3 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 9
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s3 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |--- riichi_discard_m6 >  1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_pei <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_pei >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- riichi_discard_s2 >  1.500
+|   |   |   |   |   |   |   |   |--- visible_s5 <= 3.500
+|   |   |   |   |   |   |   |   |   |--- visible_m5 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_m5 >  3.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p3 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p3 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_s5 >  3.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- riichi_discard_p4 >  1.500
+|   |   |   |   |   |   |   |--- is_dora <= 0.500
+|   |   |   |   |   |   |   |   |--- visible_s2 <= 3.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_s2 >  3.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_hatsu <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_hatsu >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- is_dora >  0.500
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- visible_chun >  2.500
+|   |   |   |   |   |   |--- visible_m8 <= 3.500
+|   |   |   |   |   |   |   |--- visible_sha <= 0.500
+|   |   |   |   |   |   |   |   |--- visible_ton <= 0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s3 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s3 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s6 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_s6 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_ton >  0.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- visible_sha >  0.500
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_m8 >  3.500
+|   |   |   |   |   |   |   |--- riichi_discard_p6 <= 1.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_hatsu <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_hatsu >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_pei <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s1 <= 2.000
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_s1 >  2.000
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_pei >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_p6 >  1.500
+|   |   |   |   |   |   |   |   |--- visible_s1 <= 1.000
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_s1 >  1.000
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |--- discard_haku >  0.500
+|   |   |   |--- visible_haku <= 1.500
+|   |   |   |   |--- riichi_discard_m4 <= 2.500
+|   |   |   |   |   |--- riichi_discard_s6 <= 1.500
+|   |   |   |   |   |   |--- riichi_discard_sha <= 1.500
+|   |   |   |   |   |   |   |--- riichi_discard_pei <= 1.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_p5 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |   |   |   |   |   |   |   |--- visible_s9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_ton <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_ton >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_p5 >  0.500
+|   |   |   |   |   |   |   |   |   |--- visible_p1 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s4 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_s4 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_p1 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_pei >  1.500
+|   |   |   |   |   |   |   |   |--- visible_p3 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_p3 >  0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p6 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p6 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- riichi_discard_sha >  1.500
+|   |   |   |   |   |   |   |--- visible_s2 <= 3.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_m7 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_m7 >  0.500
+|   |   |   |   |   |   |   |   |   |--- visible_p5 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_p5 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- visible_s2 >  3.500
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- riichi_discard_s6 >  1.500
+|   |   |   |   |   |   |--- visible_p4 <= 1.500
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_p4 >  1.500
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- riichi_discard_m4 >  2.500
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- visible_haku >  1.500
+|   |   |   |   |--- riichi_discard_p8 <= 2.500
+|   |   |   |   |   |--- visible_haku <= 2.500
+|   |   |   |   |   |   |--- visible_p9 <= 0.500
+|   |   |   |   |   |   |   |--- visible_s1 <= 2.500
+|   |   |   |   |   |   |   |   |--- visible_p7 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_p7 >  1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m4 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s7 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s7 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m4 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s5 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_s5 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- visible_s1 >  2.500
+|   |   |   |   |   |   |   |   |--- visible_p2 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- visible_p3 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p1 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_p1 >  2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_p3 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_p2 >  0.500
+|   |   |   |   |   |   |   |   |   |--- visible_nan <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m5 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m5 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_nan >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_p9 >  0.500
+|   |   |   |   |   |   |   |--- visible_p2 <= 2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_chun <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_chun >  1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m3 <= 1.000
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_m3 >  1.000
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_p2 >  2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_m9 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_m9 >  0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s9 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m2 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_m2 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s9 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m3 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_m3 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- visible_haku >  2.500
+|   |   |   |   |   |   |--- visible_m1 <= 0.500
+|   |   |   |   |   |   |   |--- riichi_discard_m2 <= 1.500
+|   |   |   |   |   |   |   |   |--- visible_s8 <= 3.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_s8 >  3.500
+|   |   |   |   |   |   |   |   |   |--- visible_s7 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_s7 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_m2 >  1.500
+|   |   |   |   |   |   |   |   |--- visible_s3 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_s3 >  1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_m1 >  0.500
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- riichi_discard_p8 >  2.500
+|   |   |   |   |   |--- visible_s1 <= 0.500
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- visible_s1 >  0.500
+|   |   |   |   |   |   |--- class: 0
+|   |--- discard_nan >  0.500
+|   |   |--- visible_nan <= 1.500
+|   |   |   |--- riichi_discard_pei <= 2.500
+|   |   |   |   |--- visible_p5 <= 3.500
+|   |   |   |   |   |--- riichi_discard_p5 <= 1.500
+|   |   |   |   |   |   |--- riichi_discard_m3 <= 1.500
+|   |   |   |   |   |   |   |--- riichi_discard_p6 <= 1.500
+|   |   |   |   |   |   |   |   |--- visible_pei <= 3.500
+|   |   |   |   |   |   |   |   |   |--- visible_chun <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m1 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |   |--- visible_m1 >  2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- visible_chun >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p7 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_p7 >  2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |--- visible_pei >  3.500
+|   |   |   |   |   |   |   |   |   |--- visible_p9 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_p9 >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_s9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |--- riichi_discard_p6 >  1.500
+|   |   |   |   |   |   |   |   |--- visible_p7 <= 1.000
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_p7 >  1.000
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- riichi_discard_m3 >  1.500
+|   |   |   |   |   |   |   |--- visible_pei <= 1.500
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_pei >  1.500
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- riichi_discard_p5 >  1.500
+|   |   |   |   |   |   |--- riichi_discard_p1 <= 0.500
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- riichi_discard_p1 >  0.500
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- visible_p5 >  3.500
+|   |   |   |   |   |--- riichi_discard_haku <= 0.500
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- riichi_discard_haku >  0.500
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |--- riichi_discard_pei >  2.500
+|   |   |   |   |--- visible_p6 <= 0.500
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- visible_p6 >  0.500
+|   |   |   |   |   |--- class: 1
+|   |   |--- visible_nan >  1.500
+|   |   |   |--- riichi_discard_m6 <= 2.500
+|   |   |   |   |--- riichi_discard_haku <= 2.500
+|   |   |   |   |   |--- visible_s5 <= 2.500
+|   |   |   |   |   |   |--- riichi_discard_s7 <= 0.500
+|   |   |   |   |   |   |   |--- visible_m5 <= 3.500
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- visible_m5 >  3.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_s8 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_s8 >  1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s2 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s2 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- riichi_discard_s7 >  0.500
+|   |   |   |   |   |   |   |--- visible_ton <= 0.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_s9 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- visible_m9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p9 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_p9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_m9 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_s9 >  1.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_ton >  0.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_s3 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m9 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m9 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s5 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s5 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |--- riichi_discard_s3 >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_m4 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_m4 >  3.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- visible_s5 >  2.500
+|   |   |   |   |   |   |--- visible_nan <= 2.500
+|   |   |   |   |   |   |   |--- riichi_discard_hatsu <= 2.500
+|   |   |   |   |   |   |   |   |--- visible_s1 <= 2.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_s1 >  2.500
+|   |   |   |   |   |   |   |   |   |--- visible_s3 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 4
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p9 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- visible_s3 >  3.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- riichi_discard_hatsu >  2.500
+|   |   |   |   |   |   |   |   |--- visible_m4 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_m4 >  0.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- visible_nan >  2.500
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- riichi_discard_haku >  2.500
+|   |   |   |   |   |--- visible_m1 <= 3.500
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- visible_m1 >  3.500
+|   |   |   |   |   |   |--- visible_sha <= 2.500
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- visible_sha >  2.500
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |--- riichi_discard_m6 >  2.500
+|   |   |   |   |--- visible_p1 <= 1.000
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- visible_p1 >  1.000
+|   |   |   |   |   |--- class: 0
+|--- is_suji >  0.500
+|   |--- discard_m6 <= 0.500
+|   |   |--- discard_p5 <= 0.500
+|   |   |   |--- discard_sha <= 0.500
+|   |   |   |   |--- discard_pei <= 0.500
+|   |   |   |   |   |--- riichi_discard_p9 <= 1.500
+|   |   |   |   |   |   |--- visible_p9 <= 2.500
+|   |   |   |   |   |   |   |--- discard_p9 <= 0.500
+|   |   |   |   |   |   |   |   |--- discard_m3 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m5 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- discard_s6 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- discard_s6 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 9
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m5 >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_ton <= 2.000
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_ton >  2.000
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- discard_m3 >  0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_pei <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m3 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |   |   |   |   |   |   |   |--- visible_m3 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_pei >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- discard_p9 >  0.500
+|   |   |   |   |   |   |   |   |--- visible_p9 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p4 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s7 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |   |   |   |   |   |   |   |--- visible_s7 >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_p4 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_p9 >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_p2 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p3 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 7
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p3 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- visible_p2 >  3.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_nan <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_nan >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_p9 >  2.500
+|   |   |   |   |   |   |   |--- riichi_discard_m1 <= 2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_m5 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- discard_p1 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s9 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s9 >  2.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |--- discard_p1 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p1 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 4
+|   |   |   |   |   |   |   |   |   |   |--- visible_p1 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 6
+|   |   |   |   |   |   |   |   |--- riichi_discard_m5 >  1.500
+|   |   |   |   |   |   |   |   |   |--- discard_m4 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- discard_p8 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |   |--- discard_p8 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- discard_m4 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s9 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |   |--- visible_s9 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |--- riichi_discard_m1 >  2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_p3 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- visible_ton <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_ton >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p4 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p4 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- riichi_discard_p3 >  0.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- riichi_discard_p9 >  1.500
+|   |   |   |   |   |   |--- visible_s9 <= 0.500
+|   |   |   |   |   |   |   |--- visible_p6 <= 2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_s3 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- is_dora <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- is_dora >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_hatsu <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_hatsu >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- riichi_discard_s3 >  1.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_p6 >  2.500
+|   |   |   |   |   |   |   |   |--- visible_s3 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- visible_p2 <= 2.000
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_p2 >  2.000
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_s3 >  1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_s9 >  0.500
+|   |   |   |   |   |   |   |--- visible_m1 <= 0.500
+|   |   |   |   |   |   |   |   |--- visible_s1 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- visible_m3 <= 1.000
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_m3 >  1.000
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_s1 >  0.500
+|   |   |   |   |   |   |   |   |   |--- discard_m8 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s9 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_s9 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- discard_m8 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p6 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_p6 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_m1 >  0.500
+|   |   |   |   |   |   |   |   |--- visible_ton <= 0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s4 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p4 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 4
+|   |   |   |   |   |   |   |   |   |   |--- visible_p4 >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s4 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_ton >  0.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m2 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- discard_m7 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 10
+|   |   |   |   |   |   |   |   |   |   |--- discard_m7 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 4
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_m2 >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s7 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_s7 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- discard_pei >  0.500
+|   |   |   |   |   |--- riichi_discard_m2 <= 2.500
+|   |   |   |   |   |   |--- visible_pei <= 1.500
+|   |   |   |   |   |   |   |--- riichi_discard_m2 <= 1.500
+|   |   |   |   |   |   |   |   |--- visible_m5 <= 2.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_m5 >  2.500
+|   |   |   |   |   |   |   |   |   |--- visible_haku <= 2.000
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_haku >  2.000
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_m2 >  1.500
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- visible_pei >  1.500
+|   |   |   |   |   |   |   |--- riichi_discard_p5 <= 1.500
+|   |   |   |   |   |   |   |   |--- visible_m1 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- visible_p7 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |--- visible_p7 >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_p5 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |   |--- visible_p5 >  0.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_m1 >  0.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_p5 >  1.500
+|   |   |   |   |   |   |   |   |--- visible_s4 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- visible_chun <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_chun >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_s4 >  0.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- riichi_discard_m2 >  2.500
+|   |   |   |   |   |   |--- visible_p5 <= 3.000
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_p5 >  3.000
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |--- discard_sha >  0.500
+|   |   |   |   |--- visible_sha <= 1.500
+|   |   |   |   |   |--- riichi_discard_p8 <= 1.500
+|   |   |   |   |   |   |--- riichi_discard_s8 <= 1.500
+|   |   |   |   |   |   |   |--- riichi_discard_s6 <= 1.500
+|   |   |   |   |   |   |   |   |--- visible_m3 <= 3.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_m3 >  3.500
+|   |   |   |   |   |   |   |   |   |--- visible_ton <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_ton >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_s6 >  1.500
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- riichi_discard_s8 >  1.500
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- riichi_discard_p8 >  1.500
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- visible_sha >  1.500
+|   |   |   |   |   |--- class: 0
+|   |   |--- discard_p5 >  0.500
+|   |   |   |--- riichi_discard_p5 <= 0.500
+|   |   |   |   |--- visible_s5 <= 3.500
+|   |   |   |   |   |--- riichi_discard_m1 <= 2.500
+|   |   |   |   |   |   |--- riichi_discard_haku <= 0.500
+|   |   |   |   |   |   |   |--- riichi_discard_m8 <= 1.500
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- riichi_discard_m8 >  1.500
+|   |   |   |   |   |   |   |   |--- visible_sha <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- visible_sha >  1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- riichi_discard_haku >  0.500
+|   |   |   |   |   |   |   |--- visible_p1 <= 2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_p2 <= 0.500
+|   |   |   |   |   |   |   |   |   |--- visible_p5 <= 2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_s4 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |   |--- visible_s4 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_p5 >  2.500
+|   |   |   |   |   |   |   |   |   |   |--- visible_m7 <= 3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |   |   |--- visible_m7 >  3.500
+|   |   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- riichi_discard_p2 >  0.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- visible_p1 >  2.500
+|   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- riichi_discard_m1 >  2.500
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- visible_s5 >  3.500
+|   |   |   |   |   |--- visible_s7 <= 1.500
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |--- visible_s7 >  1.500
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |--- riichi_discard_p5 >  0.500
+|   |   |   |   |--- class: 0
+|   |--- discard_m6 >  0.500
+|   |   |--- riichi_discard_m6 <= 0.500
+|   |   |   |--- visible_m1 <= 0.500
+|   |   |   |   |--- riichi_discard_p4 <= 0.500
+|   |   |   |   |   |--- visible_s5 <= 0.500
+|   |   |   |   |   |   |--- visible_sha <= 2.500
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |--- visible_sha >  2.500
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- visible_s5 >  0.500
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- riichi_discard_p4 >  0.500
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- visible_m1 >  0.500
+|   |   |   |   |--- visible_s6 <= 3.500
+|   |   |   |   |   |--- riichi_discard_p9 <= 2.500
+|   |   |   |   |   |   |--- visible_s7 <= 3.500
+|   |   |   |   |   |   |   |--- visible_s2 <= 2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_m3 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- riichi_discard_m3 >  1.500
+|   |   |   |   |   |   |   |   |   |--- visible_m5 <= 0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- visible_m5 >  0.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |--- visible_s2 >  2.500
+|   |   |   |   |   |   |   |   |--- riichi_discard_m1 <= 1.500
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s4 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p8 <= 1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 3
+|   |   |   |   |   |   |   |   |   |   |--- riichi_discard_p8 >  1.500
+|   |   |   |   |   |   |   |   |   |   |   |--- truncated branch of depth 2
+|   |   |   |   |   |   |   |   |   |--- riichi_discard_s4 >  1.500
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- riichi_discard_m1 >  1.500
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- visible_s7 >  3.500
+|   |   |   |   |   |   |   |--- visible_p8 <= 0.500
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- visible_p8 >  0.500
+|   |   |   |   |   |   |   |   |--- visible_p5 <= 3.000
+|   |   |   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |   |   |   |   |--- visible_p5 >  3.000
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- riichi_discard_p9 >  2.500
+|   |   |   |   |   |   |--- visible_m7 <= 1.500
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- visible_m7 >  1.500
+|   |   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- visible_s6 >  3.500
+|   |   |   |   |   |--- visible_s4 <= 0.500
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- visible_s4 >  0.500
+|   |   |   |   |   |   |--- class: 0
+|   |   |--- riichi_discard_m6 >  0.500
+|   |   |   |--- class: 0
