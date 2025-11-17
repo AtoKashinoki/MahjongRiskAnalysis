@@ -17,7 +17,7 @@ T = TypeVar('T')
 
 from abc import ABC, abstractmethod
 import functools
-import time
+from time import time, sleep
 from threading import Thread
 
 from sklearn.base import ClassifierMixin, RegressorMixin
@@ -182,7 +182,7 @@ class DisplayFit(DisplayWrapper):
         print(end="")
         for i in range(4):
             print("\r", display_text, "." * i, " "*(4-i), sep="", end="")
-            time.sleep(0.5)
+            sleep(0.5)
             continue
         return
     ...
@@ -206,6 +206,10 @@ class Display:
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
 
+            # display start time
+            start_time = time()
+            print(f"Start processing time: {start_time}")
+
             # start display process
             display = DisplayFit(func.__name__)
             display.start()
@@ -222,6 +226,11 @@ class Display:
             # stop display process
             display.stop()
             display.join()
+
+            # display use time
+            end_time = time()
+            print(f"End processing time: {end_time}")
+            print(f"Total time: {end_time - start_time}")
 
             return result
 
