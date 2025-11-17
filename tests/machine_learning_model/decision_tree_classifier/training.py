@@ -30,11 +30,11 @@ if __name__ == '__main__':
                 list_x_train.append(data[:-1])
                 list_y_train.append(data[-1])
                 continue
-            print(f"success to load data from {filename}")
+            print(f"Success to load data from {filename}")
             continue
         continue
     X_train, y_train = array(list_x_train), array(list_y_train)
-    print(X_train.shape, y_train.shape)
+
 
     model = DecisionTreeClassifier()
     model.fit(X_train[:-1], y_train[:-1])

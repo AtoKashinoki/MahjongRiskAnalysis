@@ -181,7 +181,7 @@ class DisplayFit(DisplayWrapper):
         """
         print(end="")
         for i in range(4):
-            print("\r", display_text, "." * i, sep="", end="")
+            print("\r", display_text, "." * i, " "*(4-i), sep="", end="")
             time.sleep(0.5)
             continue
         return
