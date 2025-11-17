@@ -18,6 +18,7 @@ T = TypeVar('T')
 from abc import ABC, abstractmethod
 import functools
 from time import time, sleep
+from datetime import datetime
 from threading import Thread
 
 from sklearn.base import ClassifierMixin, RegressorMixin
@@ -208,7 +209,7 @@ class Display:
 
             # display start time
             start_time = time()
-            print(f"Start processing time: {start_time}")
+            print(f"Start processing time: {datetime.now()}")
 
             # start display process
             display = DisplayFit(func.__name__)
@@ -229,8 +230,8 @@ class Display:
 
             # display use time
             end_time = time()
-            print(f"End processing time: {end_time}")
-            print(f"Total time: {end_time - start_time}")
+            print(f"End processing time: {datetime.now()}")
+            print(f"Total time: {end_time - start_time:.2f}")
 
             return result
 
