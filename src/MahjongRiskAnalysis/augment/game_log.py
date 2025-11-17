@@ -95,17 +95,18 @@ class MahjongLogAugmenter(Augmenter):
         self.__display_doras.append(tile_id)
         return
 
-    __reach: List[bool]
+    __reach: List[Optional[int]]
     @property
-    def reach(self) -> Tuple[bool, ...]: return tuple(self.__reach)
+    def reach(self) -> Tuple[Optional[int], ...]: return tuple(self.__reach)
 
-    def on_reach(self, player_id: int) -> None:
+    def on_reach(self, player_id: int, reach_tile_id: int) -> None:
         """
         Up flag of reach.
         :param player_id: Player id of the player.
+        :param reach_tile_id: Tile id of the reach.
         :return: None
         """
-        self.__reach[player_id] = True
+        self.__reach[player_id] = reach_tile_id
         return
 
     """ Hands """
@@ -181,7 +182,7 @@ class MahjongLogAugmenter(Augmenter):
         self.__display_doras = [int(attrs["seed"].split(",")[-1])]
 
         # reach
-        self.__reach = [False for _ in range(self.__augmenter_config.player_num)]
+        self.__reach = [None for _ in range(self.__augmenter_config.player_num)]
 
         # hand
         self.__hands = [
@@ -258,7 +259,24 @@ class MahjongLogAugmenter(Augmenter):
         :return: None
         """
         if not int(reach_tag.attrs["step"]) == 2: return
-        self.on_reach(int(reach_tag.attrs["who"]))
+
+        reach_player_id = int(reach_tag.attrs["who"])
+        for i in range(1, 3):
+
+            idx = self.__log_index - i
+            tag = self.__game_log[idx]
+
+            if not tag == LogTag.REACH: continue
+            if not int(tag.attrs["who"]) == reach_player_id: continue
+
+            reach_tile_id = int(self.__game_log[idx+1].attrs["id"])
+            break
+
+        else:
+            print("Reach is not found.")
+            exit()
+
+        self.on_reach(reach_player_id, reach_tile_id)
         return
 
     def __naki_of_kakan(

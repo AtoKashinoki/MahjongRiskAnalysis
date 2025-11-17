@@ -146,6 +146,24 @@ class AugmenterConfig(ConfigBase):
         return discard_nums
 
     @classmethod
+    def generate_called_reach(
+            cls,
+            reach_player_id: int,
+            augmenter: MahjongLogAugmenter,
+    ) -> List[int]:
+        """
+        Generate training data that reach plyer discard tile calling reach.
+        :param reach_player_id: Target player id that generate training data.
+        :param augmenter: Mahjong log augmenter.
+        :return: Generated training data of calling reach.
+        """
+        reach_tile_kind_id = augmenter.reach[reach_player_id] // 4
+        return [
+            1 if idx == reach_tile_kind_id else 0
+            for idx in range(cls.tile_kind_num)
+        ]
+
+    @classmethod
     def generate_discard_now(
             cls,
             self_player_id: int,
@@ -224,6 +242,12 @@ class AugmenterConfig(ConfigBase):
 
         # discard of reach player
         training_data += cls.generate_discard_data(
+            reach_player_id,
+            augmenter,
+        )
+
+        # discard tile of called reach
+        training_data += cls.generate_called_reach(
             reach_player_id,
             augmenter,
         )
@@ -326,9 +350,9 @@ class AugmenterConfig(ConfigBase):
         """ generate training data """
 
         result: List[Tuple[int, ...]] = []
-        for player_id, reach in enumerate(augmenter.reach):
+        for player_id, reach_tile_id in enumerate(augmenter.reach):
 
-            if not reach: continue
+            if not isinstance(reach_tile_id, int): continue
             if player_id == self_player_id: continue
 
             datas = cls.generate_training_data(

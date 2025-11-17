@@ -82,16 +82,17 @@ class MahjongLogAugmenter(ABC):
         """
         return
 
-    __reach: List[bool]
+    __reach: List[Optional[int]]
     @property
     @abstractmethod
-    def reach(self) -> Tuple[bool, ...]: ...
+    def reach(self) -> Tuple[Optional[int], ...]: ...
 
     @abstractmethod
-    def on_reach(self, player_id: int) -> None:
+    def on_reach(self, player_id: int, reach_tile_id: int) -> None:
         """
         Up flag of reach.
         :param player_id: Player id of the player.
+        :param reach_tile_id: Tile id of the reach.
         :return: None
         """
         return
