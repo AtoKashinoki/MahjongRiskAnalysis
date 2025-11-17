@@ -94,8 +94,9 @@ class DecisionTreeClassifier(MachineLearningModel):
         :return: Saved file path.
         """
         print(f"Saving model to {path}")
-        if not os.path.exists(os.path.dirname(path)):
-            os.makedirs(path)
+        dirname = os.path.dirname(path)
+        if not os.path.exists(dirname):
+            os.makedirs(dirname)
             ...
         dump(self.model, path)
         print(f"Successfully saved model to {path}")
