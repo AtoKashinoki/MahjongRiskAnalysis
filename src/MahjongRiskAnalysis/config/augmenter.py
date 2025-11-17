@@ -295,9 +295,6 @@ class AugmenterConfig(ConfigBase):
             augmenter,
         )
 
-        # discard tile is suji
-        training_data += cls.generate_is_suji(discard_tile, reach_player_id, augmenter)
-
         """ Response variable """
 
         next_tag: TagParser = augmenter.game_log[augmenter.log_index + 1]
