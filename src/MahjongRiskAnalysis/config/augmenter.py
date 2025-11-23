@@ -158,10 +158,12 @@ class AugmenterConfig(ConfigBase):
         :return: Generated training data of calling reach.
         """
         reach_tile_kind_id = augmenter.reach[reach_player_id] // 4
-        return [
+        calling_reach_tile_vec = [
             1 if idx == reach_tile_kind_id else 0
             for idx in range(cls.tile_kind_num)
         ]
+        if not sum(calling_reach_tile_vec) == 1: exit()
+        return calling_reach_tile_vec
 
     @classmethod
     def generate_discard_now(
