@@ -13,6 +13,8 @@ from MahjongRiskAnalysis.augment.game_log import augment_and_save_game_log
 
 # constants
 
+os.chdir(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 
 TARGET_YEARS = tuple(map(str, range(2024, 2025)))
 

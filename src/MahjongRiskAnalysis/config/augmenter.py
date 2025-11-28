@@ -6,7 +6,7 @@ Configs that augment game log.
 
 
 from typing import (
-    List, Tuple, Optional, Callable
+    List, Tuple, Optional
 )
 
 
@@ -67,10 +67,11 @@ class AugmenterConfig(ConfigBase):
         ))
         return tile_id//4 in dora_kinds or tile_id in cls.red_doras
 
-    @staticmethod
+    @classmethod
     def is_suji(
+            cls,
             tile_id: int,
-            reach_player_discard_tiles: Tuple[int, ...]
+            reach_player_discard_tiles: List[int]
     ) -> bool:
         """
         Check if a tile is suji.
@@ -78,11 +79,26 @@ class AugmenterConfig(ConfigBase):
         :param reach_player_discard_tiles: Discard tiles of reach player.
         :return: Discard tile is suji.
         """
-        suji_of_discard_tile = tuple(tile_id + d for d in (-3, 3))
+        suji_of_discard_tile = tuple(tile_id//4 + d for d in (-3, 3))
         return 0 != sum(
-            tile_id in reach_player_discard_tiles
-            for tile_id in suji_of_discard_tile
+            reach_player_discard_tiles[tile] > 0
+            for tile in suji_of_discard_tile
+            if 0 <= tile < len(reach_player_discard_tiles)
         )
+
+    @classmethod
+    def is_genbutu(
+            cls,
+            tile_id: int,
+            reach_player_discard_tiles: List[int]
+    ) -> bool:
+        """
+        Check if a tile is genbutu.
+        :param tile_id: Tile id that discard.
+        :param reach_player_discard_tiles: Discard tiles of reach player.
+        :return: Discard tile is genbutu.
+        """
+        return reach_player_discard_tiles[tile_id // 4] != 0
 
     @classmethod
     def generate_disclosed_data(
@@ -207,18 +223,63 @@ class AugmenterConfig(ConfigBase):
     def generate_is_suji(
             cls,
             target_tile: int,
-            reach_player_id: int,
-            augmenter: MahjongLogAugmenter,
+            reach_player_discards: List[int],
     ) -> List[int]:
         """
         Generate training data that target tile is suji.
         :param target_tile: Tile id to check.
-        :param reach_player_id: Target player id that generate training data.
-        :param augmenter: Mahjong log augmenter.
+        :param reach_player_discards: Reach player discard tiles.
         :return: Generated training data that target tile is suji.
         """
         return [
-            1 if cls.is_suji(target_tile, augmenter.discard_tiles[reach_player_id]) else 0
+            1 if cls.is_suji(target_tile, reach_player_discards) else 0
+        ]
+
+    @classmethod
+    def generate_is_genbutu(
+            cls,
+            target_tile: int,
+            reach_player_discards: List[int],
+    ) -> List[int]:
+        """
+        Generate training data that target tile is genbutu.
+        :param target_tile: Tile id to check.
+        :param reach_player_discards: Reach player discard tiles.
+        :return: Generated training data that target tile is genbutu.
+        """
+        return [
+            1 if cls.is_genbutu(target_tile, reach_player_discards) else 0
+        ]
+
+    @classmethod
+    def generate_tile_types(
+            cls,
+            target_tile_nums: List[int],
+    ) -> List[int]:
+        """
+        Generate training data that target tile is type.
+        :param target_tile_nums: Tile numbers to check.
+        :return: Generated training data that target tile is type.
+        """
+        result = [0, 0, 0, 0]
+        for tile_id, num in enumerate(target_tile_nums):
+            result[tile_id//9] += num
+            continue
+        return result
+
+    @classmethod
+    def generate_kabe(
+            cls,
+            disclosed_tile_nums: List[int],
+    ) -> List[int]:
+        """
+        Generate training data that kabe vec.
+        :param disclosed_tile_nums: Tile numbers to discard.
+        :return: Generated training data that target tile is kabe.
+        """
+        return [
+            0 if not disclosed_tile == 4 else 1
+            for disclosed_tile in disclosed_tile_nums
         ]
 
     @classmethod
@@ -272,26 +333,115 @@ class AugmenterConfig(ConfigBase):
             self_player_id: int,
             reach_player_id: int,
             augmenter: MahjongLogAugmenter,
-    ) -> Tuple[List[int], int]:
+    ) -> List[int]:
         """
         Generate training data of model2.
         :param self_player_id: Target player id that generate training data.
         :param reach_player_id: Reach player id that generate training data.
         :param augmenter: Mahjong log augmenter.
-        :return: Generated training data of model2 and discard tile id.
+        :return: Generated training data of model2.
         """
 
-        # model 1
-        training_data, discard_tile = cls.generate_model1_training_data(
+        # disclosed
+        disclosed_tile_nums = cls.generate_disclosed_data(
             self_player_id,
+            augmenter,
+        )
+        training_data = disclosed_tile_nums
+        training_data += cls.generate_tile_types(disclosed_tile_nums)
+
+        # discard of reach player
+        reach_player_discards = cls.generate_discard_data(
+            reach_player_id,
+            augmenter,
+        )
+        training_data += reach_player_discards
+        training_data += cls.generate_tile_types(reach_player_discards)
+
+        # discard tile of called reach
+        training_data += cls.generate_called_reach(
             reach_player_id,
             augmenter,
         )
 
-        # discard tile is suji
-        training_data += cls.generate_is_suji(discard_tile, reach_player_id, augmenter)
+        # tile that discard self
+        discard_now_training, discard_tile = cls.generate_discard_now(
+            self_player_id,
+            augmenter,
+        )
+        training_data += discard_now_training
+        training_data += cls.generate_tile_types(discard_now_training)
 
-        return training_data, discard_tile
+        # discard tile is dora
+        training_data += cls.generate_is_dora(discard_tile, augmenter)
+
+        # discard tile is suji
+        training_data += cls.generate_is_suji(discard_tile, reach_player_discards)
+
+        # discard tile is genbutu
+        training_data += cls.generate_is_genbutu(discard_tile, reach_player_discards)
+
+        return training_data
+
+    @classmethod
+    def generate_model3_training_data(
+            cls,
+            self_player_id: int,
+            reach_player_id: int,
+            augmenter: MahjongLogAugmenter,
+    ) -> List[int]:
+        """
+        Generate training data of model3.
+        :param self_player_id: Target player id that generate training data.
+        :param reach_player_id: Reach player id that generate training data.
+        :param augmenter: Mahjong log augmenter.
+        :return: Generated training data of model3.
+        """
+
+        # disclosed
+        disclosed_tile_nums = cls.generate_disclosed_data(
+            self_player_id,
+            augmenter,
+        )
+        training_data = disclosed_tile_nums
+        training_data += cls.generate_tile_types(disclosed_tile_nums)
+
+        # discard of reach player
+        reach_player_discards = cls.generate_discard_data(
+            reach_player_id,
+            augmenter,
+        )
+        training_data += reach_player_discards
+        training_data += cls.generate_tile_types(reach_player_discards)
+
+        # discard tile of called reach
+        training_data += cls.generate_called_reach(
+            reach_player_id,
+            augmenter,
+        )
+
+        # tile that discard self
+        discard_now_training, discard_tile = cls.generate_discard_now(
+            self_player_id,
+            augmenter,
+        )
+        training_data += discard_now_training
+        training_data += cls.generate_tile_types(discard_now_training)
+
+        # discard tile is dora
+        training_data += cls.generate_is_dora(discard_tile, augmenter)
+
+        # discard tile is suji
+        training_data += cls.generate_is_suji(discard_tile, reach_player_discards)
+
+        # discard tile is genbutu
+        training_data += cls.generate_is_genbutu(discard_tile, reach_player_discards)
+
+        # kabe
+        training_data += cls.generate_kabe(disclosed_tile_nums)
+
+        return training_data
+
 
     @classmethod
     def generate_training_data(
@@ -310,12 +460,13 @@ class AugmenterConfig(ConfigBase):
 
         """ Select training data generator """
 
-        generate_training_data = cls.generate_model1_training_data
+        # TODO: Select function that training data of model
+        generate_training_data = cls.generate_model3_training_data
 
         """ Explanatory variables """
 
         # base training data
-        training_data, discard_tile = generate_training_data(
+        training_data = generate_training_data(
             self_player_id,
             reach_player_id,
             augmenter,
