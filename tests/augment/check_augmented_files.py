@@ -25,7 +25,7 @@ if __name__ == '__main__':
         for filename in listdir:
             result = load(os.path.join(dirname, filename))
             print(list(result)[10])
-            print(len(result))
+            print(len(list(result)[10]))
             exit()
         continue
 
