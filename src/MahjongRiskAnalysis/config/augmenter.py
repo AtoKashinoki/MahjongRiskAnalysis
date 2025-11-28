@@ -291,13 +291,13 @@ class AugmenterConfig(ConfigBase):
             self_player_id: int,
             reach_player_id: int,
             augmenter: MahjongLogAugmenter,
-    ) -> Tuple[List[int], int]:
+    ) -> List[int]:
         """
         Generate training data of model1.
         :param self_player_id: Target player id that generate training data.
         :param reach_player_id: Reach player id that generate training data.
         :param augmenter: Mahjong log augmenter.
-        :return: Generated training data of model1 and discard tile id.
+        :return: Generated training data of model1,
         """
 
         # init training data
@@ -331,7 +331,7 @@ class AugmenterConfig(ConfigBase):
         # discard tile is dora
         training_data += cls.generate_is_dora(discard_tile, augmenter)
 
-        return training_data, discard_tile
+        return training_data
 
     @classmethod
     def generate_model2_training_data(
@@ -477,7 +477,7 @@ class AugmenterConfig(ConfigBase):
             cls.generate_model2_training_data,
             cls.generate_model3_training_data,
         ]
-        generate_training_data = models[cls.model_id]
+        generate_training_data = models[cls.model_id-1]
 
         """ Explanatory variables """
 
