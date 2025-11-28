@@ -29,6 +29,8 @@ class AugmenterConfig(ConfigBase):
     Configs that augment game log.
     """
 
+    model_id: int = 1
+
     player_num = 4
 
     tile_kind_num = 9 * (3 if player_num == 4 else 2) + 7
@@ -470,8 +472,12 @@ class AugmenterConfig(ConfigBase):
 
         """ Select training data generator """
 
-        # TODO: Select function that training data of model
-        generate_training_data = cls.generate_model3_training_data
+        models = [
+            cls.generate_model1_training_data,
+            cls.generate_model2_training_data,
+            cls.generate_model3_training_data,
+        ]
+        generate_training_data = models[cls.model_id]
 
         """ Explanatory variables """
 

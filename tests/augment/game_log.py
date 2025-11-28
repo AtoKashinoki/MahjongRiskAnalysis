@@ -9,6 +9,7 @@ Test code that augment processes.
 import os
 
 from MahjongRiskAnalysis.augment.game_log import augment_and_save_game_log
+from MahjongRiskAnalysis.config.augmenter import AugmenterConfig
 
 
 # constants
@@ -27,7 +28,11 @@ TRAINING_DATAS = os.path.join(DIST, "training_datas")
 if __name__ == '__main__':
     for year in TARGET_YEARS:
         target_game_logs = os.path.join(GAME_LOGS, year)
-        target_training_datas = os.path.join(TRAINING_DATAS, year)
+        target_training_datas = os.path.join(
+            TRAINING_DATAS,
+            f"model{AugmenterConfig.model_id}",
+            year
+        )
 
         listdir = [
             filename
