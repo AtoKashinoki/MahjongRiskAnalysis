@@ -1,5 +1,5 @@
 """
-Test code that augment processes.
+Test code that augment_training_data processes.
 """
 
 
@@ -8,7 +8,7 @@ Test code that augment processes.
 
 import os
 
-from MahjongRiskAnalysis.augment.game_log import augment_and_save_game_log
+from MahjongRiskAnalysis.augment_training_data.game_log import augment_and_save_game_log
 from MahjongRiskAnalysis.config.augmenter import AugmenterConfig
 
 

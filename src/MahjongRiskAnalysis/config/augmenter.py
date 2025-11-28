@@ -1,5 +1,5 @@
 """
-Configs that augment game log.
+Configs that augment_training_data game log.
 """
 
 # typing
@@ -17,7 +17,7 @@ from TenhouAPI.util.config import ConfigBase
 from TenhouAPI.config.game_log_tag import DisplayGameLogTag as LogTag
 from TenhouAPI.game_log.parse import TagParser
 
-from ..augment.mahjong_log_augmenter_skeleton import MahjongLogAugmenter
+from ..augment_training_data.mahjong_log_augmenter_skeleton import MahjongLogAugmenter
 
 
 """ Augmenter configs
@@ -26,7 +26,7 @@ from ..augment.mahjong_log_augmenter_skeleton import MahjongLogAugmenter
 
 class AugmenterConfig(ConfigBase):
     """
-    Configs that augment game log.
+    Configs that augment_training_data game log.
     """
 
     model_id: int = 1
@@ -512,7 +512,7 @@ class AugmenterConfig(ConfigBase):
         """
         Generate training data ini augmenter.
         :param self_player_id: id of discard player
-        :param augmenter: MahjongRiskAnalysis.augment.game_log.MahjongLogAugmenter
+        :param augmenter: MahjongRiskAnalysis.augment_training_data.game_log.MahjongLogAugmenter
         :return: String of training data
         """
 

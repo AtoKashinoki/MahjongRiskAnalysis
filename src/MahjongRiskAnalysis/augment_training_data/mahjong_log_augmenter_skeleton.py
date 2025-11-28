@@ -1,5 +1,5 @@
 """
-Initialize skeleton that augment mahjong log
+Initialize skeleton that augment_training_data mahjong log
 """
 
 

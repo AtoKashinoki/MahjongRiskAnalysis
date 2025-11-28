@@ -1,5 +1,5 @@
 """
-Tools that augment game log of tenhou.
+Tools that augment_training_data game log of tenhou.
 """
 
 # typing
@@ -518,7 +518,7 @@ class MahjongLogAugmenter(Augmenter):
     ...
 
 
-""" augment file """
+""" augment_training_data file """
 
 
 def augment_and_save_game_log(
