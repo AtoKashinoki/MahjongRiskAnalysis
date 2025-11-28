@@ -8,6 +8,9 @@ from numpy import load, array
 from MahjongRiskAnalysis.machine_learning_model.decision_tree_classifier.training import DecisionTreeClassifier
 
 
+os.chdir(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+
 TARGET_YEARS = tuple(map(str, range(2024, 2025)))
 
 

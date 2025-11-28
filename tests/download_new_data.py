@@ -1,6 +1,8 @@
 
 
-import os.path
+import os
+from urllib.error import HTTPError
+
 from TenhouAPI.game_id import GameIdDirectory
 from TenhouAPI.game_log import GameLogDirectory
 
@@ -8,25 +10,34 @@ from TenhouAPI.game_log import GameLogDirectory
 os.chdir(os.path.join(os.path.dirname(__file__), ".."))
 
 
-TARGET = "2024"
-
+YEAR = 2025
+MONTH = 11
 DIST = os.path.join("..", "tenhou_data")
 
 
 if __name__ == '__main__':
+    ids_dir = GameIdDirectory(os.path.join(DIST, "game_ids", str(YEAR)))
 
-    ids_dir = GameIdDirectory(os.path.join(DIST, "game_ids", TARGET))
-
-    filelist = ids_dir.save_file_from_zipped_files_dir(
-        os.path.join(DIST, "gz", TARGET),
-    )
+    filelist = []
+    for day in range(1, 31+1):
+        try:
+            filelist += [
+                ids_dir.download_and_install(
+                    YEAR, MONTH, day, hour, sleep_time=0.1
+                )
+                for hour in range(24)
+            ]
+        except HTTPError as e:
+            print(e)
+            ...
+        continue
 
     ids = []
     for filename in filelist:
         ids += ids_dir.extract_game_ids_from_file(filename)
         continue
 
-    log_dir = GameLogDirectory(os.path.join(DIST, "game_logs", TARGET))
+    log_dir = GameLogDirectory(os.path.join(DIST, "game_logs", str(YEAR)))
 
     ids_len = len(ids)
 
