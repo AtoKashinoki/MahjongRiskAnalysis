@@ -8,6 +8,9 @@ import os
 from numpy import load
 
 
+os.chdir(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+
 TARGET_YEARS = tuple(map(str, range(2024, 2025)))
 
 
@@ -22,6 +25,7 @@ if __name__ == '__main__':
         for filename in listdir:
             result = load(os.path.join(dirname, filename))
             print(list(result)[10])
+            print(len(result))
             exit()
         continue
 

@@ -278,8 +278,9 @@ class AugmenterConfig(ConfigBase):
         :return: Generated training data that target tile is kabe.
         """
         return [
-            0 if not disclosed_tile == 4 else 1
-            for disclosed_tile in disclosed_tile_nums
+            0 if not disclosed_tile_num == 4 else 1
+            for tile_id, disclosed_tile_num in enumerate(disclosed_tile_nums)
+            if tile_id < 27
         ]
 
     @classmethod
@@ -297,8 +298,11 @@ class AugmenterConfig(ConfigBase):
         :return: Generated training data of model1 and discard tile id.
         """
 
+        # init training data
+        training_data = []
+
         # disclosed
-        training_data = cls.generate_disclosed_data(
+        training_data += cls.generate_disclosed_data(
             self_player_id,
             augmenter,
         )
@@ -342,12 +346,15 @@ class AugmenterConfig(ConfigBase):
         :return: Generated training data of model2.
         """
 
+        # init training data
+        training_data = []
+
         # disclosed
         disclosed_tile_nums = cls.generate_disclosed_data(
             self_player_id,
             augmenter,
         )
-        training_data = disclosed_tile_nums
+        training_data += disclosed_tile_nums
         training_data += cls.generate_tile_types(disclosed_tile_nums)
 
         # discard of reach player
@@ -398,12 +405,15 @@ class AugmenterConfig(ConfigBase):
         :return: Generated training data of model3.
         """
 
+        # init training data
+        training_data = []
+
         # disclosed
         disclosed_tile_nums = cls.generate_disclosed_data(
             self_player_id,
             augmenter,
         )
-        training_data = disclosed_tile_nums
+        training_data += disclosed_tile_nums
         training_data += cls.generate_tile_types(disclosed_tile_nums)
 
         # discard of reach player
@@ -461,8 +471,12 @@ class AugmenterConfig(ConfigBase):
         """ Select training data generator """
 
         # TODO: Select function that training data of model
-        generate_training_data = cls.generate_model3_training_data
-
+        generate_training_data = cls.generate_model3_training_data(
+            self_player_id,
+            reach_player_id,
+            augmenter,
+        )
+        
         """ Explanatory variables """
 
         # base training data
