@@ -471,12 +471,8 @@ class AugmenterConfig(ConfigBase):
         """ Select training data generator """
 
         # TODO: Select function that training data of model
-        generate_training_data = cls.generate_model3_training_data(
-            self_player_id,
-            reach_player_id,
-            augmenter,
-        )
-        
+        generate_training_data = cls.generate_model3_training_data
+
         """ Explanatory variables """
 
         # base training data
