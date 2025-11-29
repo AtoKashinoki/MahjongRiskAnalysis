@@ -20,9 +20,11 @@ os.chdir(os.path.join(os.path.dirname(__file__), "..", ".."))
 TARGET_YEARS = tuple(map(str, range(2024, 2025)))
 
 
+AugmenterConfig.test_data_mode = True
+
 DIST = os.path.join("..", "tenhou_data")
 GAME_LOGS = os.path.join(DIST, "game_logs")
-TRAINING_DATAS = os.path.join(DIST, "training_datas")
+TRAINING_DATAS = os.path.join(DIST, "test_datas")
 
 
 if __name__ == '__main__':

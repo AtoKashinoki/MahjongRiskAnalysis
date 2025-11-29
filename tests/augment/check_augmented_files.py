@@ -15,7 +15,7 @@ TARGET_YEARS = tuple(map(str, range(2024, 2025)))
 
 
 DIST = os.path.join("..", "tenhou_data")
-TRAINING_DATAS = os.path.join(DIST, "training_datas")
+TRAINING_DATAS = os.path.join(DIST, "test_datas")
 
 model_id = 1
 
@@ -26,8 +26,9 @@ if __name__ == '__main__':
         listdir = os.listdir(dirname)
         for filename in listdir:
             result = load(os.path.join(dirname, filename))
-            print(list(result)[10])
-            print(len(list(result)[10]))
+            if len(list(result)) == 0: continue
+            print(list(result))
+            print(len(list(result)))
             exit()
         continue
 

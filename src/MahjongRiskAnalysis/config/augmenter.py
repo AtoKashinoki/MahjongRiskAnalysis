@@ -30,6 +30,7 @@ class AugmenterConfig(ConfigBase):
     """
 
     model_id: int = 1
+    test_data_mode: bool = False
 
     player_num = 4
 
@@ -461,7 +462,7 @@ class AugmenterConfig(ConfigBase):
             self_player_id: int,
             reach_player_id: int,
             augmenter: MahjongLogAugmenter,
-    ) -> Tuple[int, ...]:
+    ) -> Optional[Tuple[int, ...]]:
         """
         Generate training data.
         :param self_player_id: Target player id that generate training data.
@@ -469,6 +470,20 @@ class AugmenterConfig(ConfigBase):
         :param augmenter: MahjongLogAugmenter.
         :return: Generated training data.
         """
+
+        """ Generate result """
+
+        next_tag: TagParser = augmenter.game_log[augmenter.log_index + 1]
+        result = 0
+        if (
+                next_tag == LogTag.AGARI and
+                int(next_tag.attrs["who"]) == reach_player_id
+        ):
+            result += 1
+            ...
+
+        if cls.test_data_mode and not result == 1:
+            return None
 
         """ Select training data generator """
 
@@ -490,15 +505,7 @@ class AugmenterConfig(ConfigBase):
 
         """ Response variable """
 
-        next_tag: TagParser = augmenter.game_log[augmenter.log_index + 1]
-        training_data += [
-            1
-            if (
-                    next_tag == LogTag.AGARI and
-                    int(next_tag.attrs["who"]) == reach_player_id
-            ) else
-            0
-        ]
+        training_data += [result]
 
         """ Return training data """
         return tuple(training_data)
@@ -532,8 +539,8 @@ class AugmenterConfig(ConfigBase):
             result.append(datas)
             continue
 
-        if len(result) == 0:
-            return None
+        if result is None: return None
+        if len(result) == 0: return None
 
         return tuple(result)
 
