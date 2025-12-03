@@ -466,6 +466,12 @@ class MahjongLogAugmenter(Augmenter):
 
         tag = self.__game_log[self.__log_index]
 
+        """ Update pre hands """
+
+        if not tag == LogTag.INIT:
+            self.__pre_hands = [] + self.__hands
+            ...
+
         """ Processing each tags """
 
         for key, method in self.__PROCEED_METHODS.items():
@@ -552,6 +558,7 @@ def augment_and_save_game_log(
     augmenter = augmenter(parsed_file)
 
     training_data: List[Tuple[int, ...]] = []
+    i = 0
     for _ in range(len(augmenter)):
         result = [
             data
@@ -559,6 +566,16 @@ def augment_and_save_game_log(
             if isinstance(data, Tuple)
         ]
         if len(result) == 0: continue
+        if AugmenterConfig.test_data_mode:
+            new_result = [
+                [i, *data]
+                for datas in result
+                for data in datas
+            ]
+            i += 1
+            result = new_result
+            ...
+
         training_data += result
         continue
 
@@ -566,6 +583,7 @@ def augment_and_save_game_log(
 
     # check directory
     dirname = os.path.dirname(save_file_path)
+
     if not os.path.exists(dirname):
         os.makedirs(dirname)
         ...

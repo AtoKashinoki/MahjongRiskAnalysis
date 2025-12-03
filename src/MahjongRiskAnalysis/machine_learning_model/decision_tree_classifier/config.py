@@ -21,7 +21,7 @@ class ModelConfig(ConfigBase):
     Config that learn decision tree classifier.
     """
 
-    max_depth: int = 5
+    max_depth: int = 15
     random_state: int = 0
 
     ...

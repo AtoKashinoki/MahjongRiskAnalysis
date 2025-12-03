@@ -51,7 +51,7 @@ if __name__ == '__main__':
                     filename.replace("log", "training_data")
                 )
                 target = os.path.join(target_game_logs, filename)
-                result = augment_and_save_game_log(target, save_file_path)
+                result = augment_and_save_game_log(target, save_file_path, overwrite=True)
                 if result is None:
                     print(f"File {save_file_path} already exists, skipping.")
                     continue

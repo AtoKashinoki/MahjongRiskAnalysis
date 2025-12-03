@@ -287,6 +287,18 @@ class AugmenterConfig(ConfigBase):
         ]
 
     @classmethod
+    def generate_discard_training_data(cls, discard_tile: int) -> List[int]:
+        """
+        Generate training data from discard tile.
+        :param discard_tile: Discard tile.
+        :return: Generated training data.
+        """
+        return [
+            0 if not id_ == discard_tile//4 else 1
+            for id_ in range(cls.tile_kind_num)
+        ]
+
+    @classmethod
     def generate_model1_training_data(
             cls,
             self_player_id: int,
@@ -321,6 +333,43 @@ class AugmenterConfig(ConfigBase):
             reach_player_id,
             augmenter,
         )
+
+        if cls.test_data_mode:
+            all_training_data = []
+
+            new_training_data = [] + training_data
+
+            # tile that discard self
+            discard_now_training, discard_tile = cls.generate_discard_now(
+                self_player_id,
+                augmenter,
+            )
+            new_training_data += discard_now_training
+
+            # discard tile is dora
+            new_training_data += cls.generate_is_dora(discard_tile, augmenter)
+
+            new_training_data += [discard_tile//4]
+
+            all_training_data.append(new_training_data)
+
+            for discard_tile in augmenter.hands[self_player_id]:
+                new_training_data = [] + training_data
+
+                # tile that discard self
+                discard_now_training = cls.generate_discard_training_data(discard_tile)
+                new_training_data += discard_now_training
+
+                # discard tile is dora
+                new_training_data += cls.generate_is_dora(discard_tile, augmenter)
+
+                new_training_data += [discard_tile//4]
+
+                all_training_data.append(new_training_data)
+
+                continue
+
+            return all_training_data
 
         # tile that discard self
         discard_now_training, discard_tile = cls.generate_discard_now(
@@ -373,6 +422,57 @@ class AugmenterConfig(ConfigBase):
             reach_player_id,
             augmenter,
         )
+
+        if cls.test_data_mode:
+            all_training_data = []
+
+            new_training_data = [] + training_data
+
+            # tile that discard self
+            discard_now_training, discard_tile = cls.generate_discard_now(
+                self_player_id,
+                augmenter,
+            )
+            new_training_data += discard_now_training
+            new_training_data += cls.generate_tile_types(discard_now_training)
+
+            # discard tile is dora
+            new_training_data += cls.generate_is_dora(discard_tile, augmenter)
+
+            # discard tile is suji
+            new_training_data += cls.generate_is_suji(discard_tile, reach_player_discards)
+
+            # discard tile is genbutu
+            new_training_data += cls.generate_is_genbutu(discard_tile, reach_player_discards)
+
+            new_training_data += [discard_tile//4]
+
+            all_training_data.append(new_training_data)
+
+            for discard_tile in augmenter.hands[self_player_id]:
+                new_training_data = [] + training_data
+
+                # tile that discard self
+                discard_now_training = cls.generate_discard_training_data(discard_tile)
+                new_training_data += discard_now_training
+                new_training_data += cls.generate_tile_types(discard_now_training)
+
+                # discard tile is dora
+                new_training_data += cls.generate_is_dora(discard_tile, augmenter)
+
+                # discard tile is suji
+                new_training_data += cls.generate_is_suji(discard_tile, reach_player_discards)
+
+                # discard tile is genbutu
+                new_training_data += cls.generate_is_genbutu(discard_tile, reach_player_discards)
+
+                new_training_data += [discard_tile//4]
+
+                all_training_data.append(new_training_data)
+
+                continue
+
+            return all_training_data
 
         # tile that discard self
         discard_now_training, discard_tile = cls.generate_discard_now(
@@ -432,6 +532,63 @@ class AugmenterConfig(ConfigBase):
             reach_player_id,
             augmenter,
         )
+
+        if cls.test_data_mode:
+            all_training_data = []
+
+            new_training_data = [] + training_data
+
+            # tile that discard self
+            discard_now_training, discard_tile = cls.generate_discard_now(
+                self_player_id,
+                augmenter,
+            )
+            new_training_data += discard_now_training
+            new_training_data += cls.generate_tile_types(discard_now_training)
+
+            # discard tile is dora
+            new_training_data += cls.generate_is_dora(discard_tile, augmenter)
+
+            # discard tile is suji
+            new_training_data += cls.generate_is_suji(discard_tile, reach_player_discards)
+
+            # discard tile is genbutu
+            new_training_data += cls.generate_is_genbutu(discard_tile, reach_player_discards)
+
+            # kabe
+            new_training_data += cls.generate_kabe(disclosed_tile_nums)
+
+            new_training_data += [discard_tile//4]
+
+            all_training_data.append(new_training_data)
+
+            for discard_tile in augmenter.hands[self_player_id]:
+                new_training_data = [] + training_data
+
+                # tile that discard self
+                discard_now_training = cls.generate_discard_training_data(discard_tile)
+                new_training_data += discard_now_training
+                new_training_data += cls.generate_tile_types(discard_now_training)
+
+                # discard tile is dora
+                new_training_data += cls.generate_is_dora(discard_tile, augmenter)
+
+                # discard tile is suji
+                new_training_data += cls.generate_is_suji(discard_tile, reach_player_discards)
+
+                # discard tile is genbutu
+                new_training_data += cls.generate_is_genbutu(discard_tile, reach_player_discards)
+
+                # kabe
+                new_training_data += cls.generate_kabe(disclosed_tile_nums)
+
+                new_training_data += [discard_tile//4]
+
+                all_training_data.append(new_training_data)
+
+                continue
+
+            return all_training_data
 
         # tile that discard self
         discard_now_training, discard_tile = cls.generate_discard_now(
@@ -505,7 +662,11 @@ class AugmenterConfig(ConfigBase):
 
         """ Response variable """
 
-        training_data += [result]
+        if cls.test_data_mode:
+            ...
+        else:
+            training_data += [result]
+            ...
 
         """ Return training data """
         return tuple(training_data)

@@ -47,7 +47,7 @@ if __name__ == '__main__':
         model.save(MODEL_DATA)
 
         model = DecisionTreeClassifier.load(MODEL_DATA)
-        result = model.model.predict_proba(X_train[-1:])[0][1]
+        result = model.model.predict_proba(X_train[-1:])[0]
         print(f"{result=}, ans={y_train[-1:]}")
 
         continue
