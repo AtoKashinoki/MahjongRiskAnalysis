@@ -11,7 +11,7 @@ from MahjongRiskAnalysis.machine_learning_model.decision_tree_classifier.trainin
 os.chdir(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 
-TARGET_YEARS = tuple(map(str, range(2024, 2025)))
+TARGET_YEARS = tuple(map(str, range(2025, 2026)))
 
 
 DIST = os.path.join("..", "tenhou_data")

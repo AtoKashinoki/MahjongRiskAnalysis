@@ -17,7 +17,7 @@ from MahjongRiskAnalysis.config.augmenter import AugmenterConfig
 os.chdir(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
-TARGET_YEARS = tuple(map(str, range(2024, 2025)))
+TARGET_YEARS = tuple(map(str, range(2025, 2026)))
 
 
 AugmenterConfig.test_data_mode = True
@@ -50,7 +50,7 @@ if __name__ == '__main__':
                 print(f"Augmenting: {filename}")
                 save_file_path = os.path.join(
                     target_training_datas,
-                    filename.replace("log", "training_data")
+                    filename.replace("log", "test_data")
                 )
                 target = os.path.join(target_game_logs, filename)
                 result = augment_and_save_game_log(target, save_file_path, overwrite=True)
