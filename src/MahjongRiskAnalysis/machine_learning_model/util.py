@@ -130,14 +130,14 @@ class DisplayWrapper(Thread):
         self.__done = False
         return
 
-    """ run method """
+    """ main method """
 
     @abstractmethod
     def main(self, *args, **kwargs) -> None:
         """ Display main """
         return
 
-    """ Call run method """
+    """ Call main method """
 
     def run(self, *args, **kwargs) -> None:
         """ call wrapped method """

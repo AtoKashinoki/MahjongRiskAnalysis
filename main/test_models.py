@@ -8,29 +8,35 @@ from numpy import load, array
 from MahjongRiskAnalysis.machine_learning_model.decision_tree_classifier.training import DecisionTreeClassifier
 
 
-os.chdir(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-
+""" Configs """
 
 TEST_DATA_YEARS = tuple(map(str, range(2025, 2026)))
 
 TARGET_MODELS = range(1, 3+1)
 TARGET_DEPTHS = range(1, 30+1)
 
-
 DIST = os.path.join("..", "tenhou_data")
 
 
-if __name__ == '__main__':
+""" Process """
+
+
+def main():
+
+    os.chdir(os.path.join(os.path.dirname(__file__), ".."))
+
+    """ Test models """
+
     test_results = {}
+    for target_model in TARGET_MODELS:
 
-    for i in TARGET_MODELS:
-
-        TEST_DATAS = os.path.join(DIST, "test_datas", f"model{i}")
+        # get test datas
+        test_data_path = os.path.join(DIST, "test_datas", f"model{target_model}")
 
         list_idx = list()
         list_x_test = list()
         list_y_test = list()
-        for dirname in map(lambda x: os.path.join(TEST_DATAS, x), TEST_DATA_YEARS):
+        for dirname in map(lambda x: os.path.join(test_data_path, x), TEST_DATA_YEARS):
             listdir = os.listdir(dirname)
             length = len(listdir)
             for idx, filename in enumerate(listdir):
@@ -45,12 +51,15 @@ if __name__ == '__main__':
                 print(f"Success to load data from {filename}")
                 continue
             continue
-        idx_test, X_test, y_test= array(list_idx), array(list_x_test), array(list_y_test)
+        idx_test, X_test, y_test = array(list_idx), array(list_x_test), array(list_y_test)
 
+        # test models
         for depth in TARGET_DEPTHS:
-            MODEL_DATA = os.path.join(DIST, "models", f"model{i}", f"decision_tree_classifier_depth{depth}.joblib")
 
-            model = DecisionTreeClassifier.load(MODEL_DATA)
+            # test
+            model_path = os.path.join(DIST, "models", f"model{target_model}", f"decision_tree_classifier_depth{depth}.joblib")
+
+            model = DecisionTreeClassifier.load(model_path)
             model_results = model.model.predict_proba(X_test)
 
             results = []
@@ -64,6 +73,7 @@ if __name__ == '__main__':
                 results[-1].append([model_results[idx], y_test[idx]])
                 continue
 
+            # arrange result
             prediction_results = []
             for result in results:
 
@@ -83,6 +93,7 @@ if __name__ == '__main__':
                 prediction_results.append((answer, int(prediction_result)))
                 continue
 
+            # create prediction graph
             prediction_graph = {f"e{key}": 0 for key in range(14)}
             for prediction in prediction_results:
                 key = f"e{prediction[1]}"
@@ -95,30 +106,41 @@ if __name__ == '__main__':
                 prediction_graph.items(),
                 key=lambda x: int(x[0][1:]),
             ))
-            test_results[(i, depth)] = prediction_graph
+            test_results[(target_model, depth)] = prediction_graph
 
             continue
 
         continue
 
+    """ Output results """
+
     score_board = [1000] + [500 for _ in range(2)] + list(range(10)[::-1]) + [-1000 for _ in range(14)]
     test_results = {
-        key: (test_result, sum([r*s for r, s in zip(test_result.values(), score_board)]))
+        key: (test_result, sum([r * s for r, s in zip(test_result.values(), score_board)]))
         for key, test_result in test_results.items()
     }
     test_results = dict(sorted(test_results.items(), key=lambda x: x[1][1], reverse=True))
-    format_prediction_graph = ", ".join([f"{i}:"+"{"+f"e{i}"+": >5}" for i in range(14)])
-    print("-"*40)
+    format_prediction_graph = ", ".join([f"{i}:" + "{" + f"e{i}" + ": >5}" for i in range(14)])
+    print("-" * 40)
     print("Test score ranking of models")
     print("rank / attr / score / prediction errors {prediction error: occurrences}")
-    for i, (attr, (test_result, score)) in enumerate(test_results.items()):
+    for target_model, (attr, (test_result, score)) in enumerate(test_results.items()):
         print(
-            f"{i+1: >2}",
+            f"{target_model + 1: >2}",
             "model{} depth:{: >2}".format(*attr),
             f"{score: >8}",
             format_prediction_graph.format(**test_result),
             sep=" / "
         )
         continue
-    print("-"*40)
+    print("-" * 40)
+
+    return
+
+
+""" Main """
+
+
+if __name__ == '__main__':
+    main()
     ...
