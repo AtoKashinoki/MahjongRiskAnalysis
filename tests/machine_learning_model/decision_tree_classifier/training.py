@@ -6,6 +6,7 @@ import os
 from numpy import load, array
 
 from MahjongRiskAnalysis.machine_learning_model.decision_tree_classifier.training import DecisionTreeClassifier
+from MahjongRiskAnalysis.machine_learning_model.decision_tree_classifier.config import ModelConfig
 
 
 os.chdir(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
@@ -22,7 +23,7 @@ if __name__ == '__main__':
     for i in range(1, 3+1):
 
         TRAINING_DATAS = os.path.join(DIST, "training_datas", f"model{i}")
-        MODEL_DATA = os.path.join(DIST, "models", f"model{i}", "decision_tree_classifier.joblib")
+
         list_x_train = list()
         list_y_train = list()
         for dirname in map(lambda x: os.path.join(TRAINING_DATAS, x), TARGET_YEARS):
@@ -41,15 +42,21 @@ if __name__ == '__main__':
             continue
         X_train, y_train = array(list_x_train), array(list_y_train)
 
+        for new_max_depth in range(1, 31):
+            ModelConfig.max_depth = new_max_depth
 
-        model = DecisionTreeClassifier()
-        model.fit(X_train, y_train)
-        model.save(MODEL_DATA)
+            MODEL_DATA = os.path.join(
+                DIST, "models", f"model{i}", f"decision_tree_classifier_depth{ModelConfig.max_depth}.joblib"
+            )
+            model = DecisionTreeClassifier()
+            model.fit(X_train, y_train)
+            model.save(MODEL_DATA)
 
-        model = DecisionTreeClassifier.load(MODEL_DATA)
-        result = model.model.predict_proba(X_train[-1:])[0]
-        print(f"{result=}, ans={y_train[-1:]}")
+            model = DecisionTreeClassifier.load(MODEL_DATA)
+            result = model.model.predict_proba(X_train[-1:])[0]
+            print(f"{result=}, ans={y_train[-1:]}")
+
+            continue
 
         continue
-
     ...

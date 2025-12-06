@@ -11,24 +11,26 @@ from MahjongRiskAnalysis.machine_learning_model.decision_tree_classifier.trainin
 os.chdir(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 
 
-TARGET_YEARS = tuple(map(str, range(2025, 2026)))
+TEST_DATA_YEARS = tuple(map(str, range(2025, 2026)))
+
+TARGET_MODELS = range(1, 3+1)
+TARGET_DEPTHS = range(1, 30+1)
 
 
 DIST = os.path.join("..", "tenhou_data")
 
 
 if __name__ == '__main__':
-    test_results = []
+    test_results = {}
 
-    for i in range(1, 3+1):
+    for i in TARGET_MODELS:
 
         TEST_DATAS = os.path.join(DIST, "test_datas", f"model{i}")
-        MODEL_DATA = os.path.join(DIST, "models", f"model{i}", "decision_tree_classifier.joblib")
 
         list_idx = list()
         list_x_test = list()
         list_y_test = list()
-        for dirname in map(lambda x: os.path.join(TEST_DATAS, x), TARGET_YEARS):
+        for dirname in map(lambda x: os.path.join(TEST_DATAS, x), TEST_DATA_YEARS):
             listdir = os.listdir(dirname)
             length = len(listdir)
             for idx, filename in enumerate(listdir):
@@ -45,58 +47,78 @@ if __name__ == '__main__':
             continue
         idx_test, X_test, y_test= array(list_idx), array(list_x_test), array(list_y_test)
 
-        model = DecisionTreeClassifier.load(MODEL_DATA)
-        model_results = model.model.predict_proba(X_test)
+        for depth in TARGET_DEPTHS:
+            MODEL_DATA = os.path.join(DIST, "models", f"model{i}", f"decision_tree_classifier_depth{depth}.joblib")
 
-        results = []
-        pre_game_idx, pre_result_idx = -1, -1
-        for idx, (game_idx, result_idx) in enumerate(list_idx):
-            if not (pre_game_idx == game_idx and pre_result_idx == result_idx):
-                pre_game_idx = game_idx
-                pre_result_idx = result_idx
-                results.append([])
-                ...
-            results[-1].append([model_results[idx], y_test[idx]])
-            continue
+            model = DecisionTreeClassifier.load(MODEL_DATA)
+            model_results = model.model.predict_proba(X_test)
 
-        prediction_results = []
-        for result in results:
-
-            answer = result[0]
-
-            result.sort(key=lambda x: x[0][1], reverse=True)
-            prediction_result = None
-            for idx in range(len(result)):
-                data = result.pop(0)
-                if data[1] == answer[1]:
-                    prediction_result = idx + sum(
-                        data_[0][1] == answer[0][1] and not data_[1] == answer[1]
-                        for data_ in result
-                    )
-                    break
+            results = []
+            pre_game_idx, pre_result_idx = -1, -1
+            for idx, (game_idx, result_idx) in enumerate(list_idx):
+                if not (pre_game_idx == game_idx and pre_result_idx == result_idx):
+                    pre_game_idx = game_idx
+                    pre_result_idx = result_idx
+                    results.append([])
+                    ...
+                results[-1].append([model_results[idx], y_test[idx]])
                 continue
-            prediction_results.append((answer, int(prediction_result)))
+
+            prediction_results = []
+            for result in results:
+
+                answer = result[0]
+
+                result.sort(key=lambda x: x[0][1], reverse=True)
+                prediction_result = None
+                for idx in range(len(result)):
+                    data = result.pop(0)
+                    if data[1] == answer[1]:
+                        prediction_result = idx + sum(
+                            data_[0][1] == answer[0][1] and not data_[1] == answer[1]
+                            for data_ in result
+                        )
+                        break
+                    continue
+                prediction_results.append((answer, int(prediction_result)))
+                continue
+
+            prediction_graph = {f"e{key}": 0 for key in range(14)}
+            for prediction in prediction_results:
+                key = f"e{prediction[1]}"
+                if prediction[1] > 13:
+                    prediction_graph["e13"] += 1
+                    continue
+                prediction_graph[key] += 1
+                continue
+            prediction_graph = dict(sorted(
+                prediction_graph.items(),
+                key=lambda x: int(x[0][1:]),
+            ))
+            test_results[(i, depth)] = prediction_graph
+
             continue
 
-        prediction_graph = {}
-        for prediction in prediction_results:
-            if prediction[1] not in prediction_graph:
-                prediction_graph[prediction[1]] = 0
-                ...
-            prediction_graph[prediction[1]] += 1
-            continue
-        prediction_graph = dict(sorted(
-            prediction_graph.items(),
-            key=lambda x: x[0],
-        ))
-        test_results.append(prediction_graph)
         continue
 
-    for test_result in test_results:
-        print(test_result)
-        print({
-            idx: num*100 / sum(test_result.values())
-            for idx, num in enumerate(test_result.values())
-        })
+    score_board = [1000] + [500 for _ in range(2)] + list(range(10)[::-1]) + [-1000 for _ in range(14)]
+    test_results = {
+        key: (test_result, sum([r*s for r, s in zip(test_result.values(), score_board)]))
+        for key, test_result in test_results.items()
+    }
+    test_results = dict(sorted(test_results.items(), key=lambda x: x[1][1], reverse=True))
+    format_prediction_graph = ", ".join([f"{i}:"+"{"+f"e{i}"+": >5}" for i in range(14)])
+    print("-"*40)
+    print("Test score ranking of models")
+    print("rank / attr / score / prediction errors {prediction error: occurrences}")
+    for i, (attr, (test_result, score)) in enumerate(test_results.items()):
+        print(
+            f"{i+1: >2}",
+            "model{} depth:{: >2}".format(*attr),
+            f"{score: >8}",
+            format_prediction_graph.format(**test_result),
+            sep=" / "
+        )
         continue
+    print("-"*40)
     ...
