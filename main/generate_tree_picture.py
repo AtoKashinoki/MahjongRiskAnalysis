@@ -79,7 +79,7 @@ def save_decision_tree_visualization(model_path, output_file_name):
 
 if __name__ == '__main__':
     save_decision_tree_visualization(
-        os.path.join(DIST, f"model{TARGET_MODEL}", MODEL_NAME_FORMAT.format(depth=TARGET_DEPTH)),
+        os.path.join(DIST, "models", f"model{TARGET_MODEL}", MODEL_NAME_FORMAT.format(depth=TARGET_DEPTH)),
         MODEL_NAME_FORMAT.format(depth=TARGET_DEPTH)
     )
     ...
