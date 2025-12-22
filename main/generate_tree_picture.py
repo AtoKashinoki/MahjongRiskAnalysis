@@ -29,6 +29,8 @@ def generate_tile_names():
 
 def save_decision_tree_visualization(model_path, output_file_name):
 
+    os.chdir(os.path.join(os.path.dirname(__file__), ".."))
+
     try:
         clf = joblib.load(model_path)
         tile_names = generate_tile_names()
