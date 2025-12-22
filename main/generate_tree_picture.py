@@ -55,8 +55,9 @@ def save_decision_tree_visualization(model_path, output_file_name):
         suu_pai = [f"{i}{t}" for t in ["Man", "Pin", "Sou"] for i in range(1, 10)]
         features.extend([f"Wall_{s}" for s in suu_pai])  # [cite: 3]
 
-        plt.figure(figsize=(30, 15))
+        plt.figure(figsize=(100, 50))
         plot_tree(clf,
+                  max_depth=5,
                   feature_names=features,
                   class_names=["Safe", "Danger"],
                   filled=True,
