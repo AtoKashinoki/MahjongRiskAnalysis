@@ -4,6 +4,12 @@ Data-driven analysis of discard risk in Mahjong using machine learning with Tenh
 # Using
 
 
+実行要件
+```text
+Python3.12以上
+```
+
+
 このプロジェクトはライブラリとして開発されている。  
 そのため、ライブラリのインストールが必須である。  
 このプロジェクトディレクトリをカレントディレクトリとし、
